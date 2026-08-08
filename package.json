@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "build": "bash scripts/build-pages.sh",
+    "preview": "vite preview",
+    "build:app": "tsc --noEmit && vite build"
   },
   "dependencies": {
     "lucide-react": "^0.454.0",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@types/react": "^18.3.12",
+    "vite-plugin-singlefile": "^2.1.0",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
     "typescript": "^5.6.3",
