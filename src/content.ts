@@ -273,9 +273,9 @@ export const content = {
       legal: {
         title: 'Légal',
         links: [
-          { label: 'Mentions légales', href: '/mentions-legales.html' },
-          { label: 'CGU', href: '/cgu.html' },
-          { label: 'Politique de confidentialité', href: '/confidentialite.html' },
+          { label: 'Mentions légales', href: 'mentions-legales.html' },
+          { label: 'CGU', href: 'cgu.html' },
+          { label: 'Politique de confidentialité', href: 'confidentialite.html' },
         ] as FooterLink[],
       },
       contact: {

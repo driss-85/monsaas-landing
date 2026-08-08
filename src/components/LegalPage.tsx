@@ -7,10 +7,10 @@ export function LegalPage({ page }: { page: LegalPageData }) {
     <div className="legal">
       <nav className="nav" aria-label="Navigation principale">
         <div className="container nav-inner">
-          <a href="/" className="nav-logo">
+          <a href="index.html" className="nav-logo">
             Mon<span>SaaS</span>
           </a>
-          <a href="/" className="legal-back">
+          <a href="index.html" className="legal-back">
             <ArrowLeft size={16} strokeWidth={1.5} aria-hidden="true" />
             Retour au site
           </a>

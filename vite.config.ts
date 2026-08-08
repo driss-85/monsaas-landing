@@ -6,6 +6,9 @@ import react from '@vitejs/plugin-react'
 // client-side router in the main bundle (better Lighthouse on the landing).
 // Paths are resolved relative to the project root by Vite/Rollup.
 export default defineConfig({
+  // Base relative : le site fonctionne aussi bien a la racine d'un domaine
+  // qu'en sous-chemin (GitHub Pages d'un repo projet, ex. /monsaas-landing/).
+  base: './',
   plugins: [react()],
   build: {
     rollupOptions: {
