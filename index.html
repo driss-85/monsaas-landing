@@ -1,252 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Ton SaaS, en ligne ce soir — MonSaaS</title>
-<meta name="description" content="Choisis un logiciel fini, mets ta marque dessus, revends-le à ton audience. Zéro code. L'argent arrive direct sur ton compte." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-<style>
-  :root{
-    --bg:#0a0a0f; --bg2:#12121c; --card:#16161f; --line:rgba(255,255,255,.08);
-    --txt:#f4f4f6; --muted:#a3a3b0; --accent:#7c5cff; --accent2:#e0c3fc; --gold:#f5c76a;
-    --grad:linear-gradient(120deg,#7c5cff 0%,#c86bff 50%,#f5a0d0 100%);
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{background:var(--bg);color:var(--txt);font-family:'Inter',system-ui,sans-serif;line-height:1.55;-webkit-font-smoothing:antialiased}
-  h1,h2,h3,.display{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.1}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-  section{padding:76px 0}
-  .accent{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
-  .btn{display:inline-block;background:var(--grad);color:#0a0a0f;font-weight:700;font-family:'Space Grotesk';padding:15px 26px;border-radius:14px;text-decoration:none;font-size:16px;transition:transform .15s ease,box-shadow .15s ease;box-shadow:0 8px 30px rgba(124,92,255,.35)}
-  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(124,92,255,.5)}
-  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line);box-shadow:none}
-  .btn.ghost:hover{border-color:var(--accent);box-shadow:none}
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A0A0F" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>MonSaaS, ton logiciel prêt à vendre, en ligne ce soir</title>
+    <meta
+      name="description"
+      content="Choisis un logiciel fini, mets ta marque dessus, revends-le à ton audience. Zéro code. Les paiements arrivent sur ton compte."
+    />
 
-  /* NAV */
-  nav{position:sticky;top:0;z-index:50;background:rgba(10,10,15,.7);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
-  nav .wrap{display:flex;align-items:center;justify-content:space-between;padding:14px 22px}
-  .logo{font-family:'Space Grotesk';font-weight:700;font-size:19px}
-  .logo span{color:var(--accent)}
-  nav .btn{padding:10px 18px;font-size:14px}
-
-  /* HERO */
-  .hero{position:relative;overflow:hidden;padding-top:70px}
-  .hero:before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:900px;height:900px;background:radial-gradient(circle,rgba(124,92,255,.22),transparent 60%);pointer-events:none}
-  .badge{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--bg2);padding:7px 14px;border-radius:100px;font-size:13px;color:var(--muted);margin-bottom:26px}
-  .badge b{color:var(--gold);font-weight:600}
-  .hero h1{font-size:clamp(38px,7vw,68px);font-weight:700;max-width:14ch}
-  .hero p.sub{font-size:clamp(17px,2.4vw,21px);color:var(--muted);margin:22px 0 34px;max-width:52ch}
-  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-  .cta-note{font-size:13px;color:var(--muted);margin-top:16px}
-
-  /* ARGS */
-  .args{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:64px}
-  .arg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
-  .arg .ic{font-family:'Space Grotesk';font-weight:700;color:var(--accent);font-size:14px;margin-bottom:8px}
-  .arg b{font-family:'Space Grotesk';font-size:16px;display:block}
-
-  .eyebrow{font-family:'Space Grotesk';font-weight:600;text-transform:uppercase;letter-spacing:.14em;font-size:13px;color:var(--accent);margin-bottom:14px}
-  h2.title{font-size:clamp(28px,4.5vw,42px);font-weight:700;max-width:20ch}
-  .lead{color:var(--muted);font-size:17px;max-width:60ch;margin-top:14px}
-
-  /* STEPS */
-  .steps{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:44px}
-  .step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 16px}
-  .step .n{font-family:'Space Grotesk';font-weight:700;font-size:15px;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(124,92,255,.15);color:var(--accent2);margin-bottom:14px}
-  .step p{font-size:14.5px;color:var(--muted)}
-  .step b{color:var(--txt);font-family:'Space Grotesk';font-weight:600}
-  .magic{margin-top:30px;padding:20px 24px;border-left:3px solid var(--accent);background:var(--bg2);border-radius:0 14px 14px 0;font-size:17px}
-
-  /* MODELS */
-  .models{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
-  .model{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;transition:border-color .2s,transform .2s}
-  .model:hover{border-color:var(--accent);transform:translateY(-4px)}
-  .model h3{font-size:20px;margin-bottom:10px}
-  .model p{color:var(--muted);font-size:15px}
-  .model .demo{margin-top:16px;font-size:13.5px;color:var(--accent2);font-style:italic;border-top:1px solid var(--line);padding-top:14px}
-
-  /* PRICING */
-  .prices{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:44px}
-  .price{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:30px}
-  .price.hot{border-color:var(--accent);background:linear-gradient(180deg,rgba(124,92,255,.12),transparent);position:relative}
-  .price .tag{position:absolute;top:-13px;right:22px;background:var(--gold);color:#0a0a0f;font-weight:700;font-family:'Space Grotesk';font-size:12px;padding:6px 12px;border-radius:100px}
-  .price h3{font-size:22px}
-  .price .amt{font-family:'Space Grotesk';font-weight:700;font-size:42px;margin:10px 0}
-  .price .amt small{font-size:16px;color:var(--muted);font-weight:500}
-  .price ul{list-style:none;margin:18px 0 24px}
-  .price li{padding:8px 0 8px 26px;position:relative;color:var(--muted);font-size:15px}
-  .price li:before{content:"✓";position:absolute;left:0;color:var(--accent);font-weight:700}
-  .price .btn{width:100%;text-align:center}
-
-  /* FOUNDER / CTA */
-  .founder{background:linear-gradient(120deg,rgba(124,92,255,.16),rgba(245,199,106,.08));border:1px solid var(--line);border-radius:24px;padding:48px 34px;text-align:center;margin-top:20px}
-  .founder h2{font-size:clamp(26px,4vw,40px)}
-  .founder p{color:var(--muted);max-width:52ch;margin:16px auto 28px;font-size:17px}
-  form.wl{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
-  form.wl input{flex:1;min-width:220px;background:var(--bg2);border:1px solid var(--line);color:var(--txt);padding:15px 18px;border-radius:14px;font-size:16px;font-family:'Inter'}
-  form.wl input:focus{outline:none;border-color:var(--accent)}
-  .wl-note{font-size:13px;color:var(--muted);margin-top:16px}
-
-  .proof{text-align:center;margin-top:26px;font-size:14px;color:var(--muted)}
-
-  footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px;text-align:center}
-
-  @media(max-width:820px){
-    .args{grid-template-columns:1fr 1fr}
-    .steps{grid-template-columns:1fr 1fr}
-    .models{grid-template-columns:1fr}
-    .prices{grid-template-columns:1fr}
-  }
-  @media(max-width:520px){
-    .args{grid-template-columns:1fr}
-    .steps{grid-template-columns:1fr}
-    section{padding:56px 0}
-  }
-</style>
-</head>
-<body>
-
-<nav>
-  <div class="wrap">
-    <div class="logo">Mon<span>SaaS</span></div>
-    <a href="#founder" class="btn">Rejoindre les fondateurs</a>
-  </div>
-</nav>
-
-<header class="hero">
-  <div class="wrap">
-    <span class="badge">🚀 Offre <b>membre fondateur</b> — prix gelé à vie</span>
-    <h1>Ton SaaS, <span class="accent">en ligne ce soir.</span></h1>
-    <p class="sub">Choisis un logiciel déjà fini dans le catalogue, mets ta marque dessus, fixe ton prix. Tu le revends à ton audience. Zéro code, zéro galère. L'argent arrive direct sur ton compte.</p>
-    <div class="cta-row">
-      <a href="#founder" class="btn">Je réserve ma place</a>
-      <a href="#how" class="btn ghost">Voir comment ça marche</a>
-    </div>
-    <p class="cta-note">Gratuit pour commencer — tu ne paies que quand tu vends.</p>
-
-    <div class="args">
-      <div class="arg"><div class="ic">01</div><b>Clé en main, ce soir</b>Un SaaS qui tourne, prêt à vendre. Pas dans trois semaines. Ce soir.</div>
-      <div class="arg"><div class="ic">02</div><b>Zéro code</b>Aucune compétence technique. Tu n'écris pas une ligne.</div>
-      <div class="arg"><div class="ic">03</div><b>Ta marque, ton prix</b>Ton nom, ton logo, tes couleurs, le tarif que tu décides.</div>
-      <div class="arg"><div class="ic">04</div><b>Direct sur ton compte</b>Les paiements de tes clients arrivent sur ton compte bancaire.</div>
-      <div class="arg"><div class="ic">05</div><b>Page de vente incluse</b>Le texte qui vend est déjà écrit pour toi.</div>
-      <div class="arg"><div class="ic">06</div><b>Tu paies quand tu vends</b>On commence gratuit. On se rémunère sur tes ventes, pas avant.</div>
-    </div>
-  </div>
-</header>
-
-<section id="how" style="background:var(--bg2)">
-  <div class="wrap">
-    <div class="eyebrow">Le parcours, 15 minutes chrono</div>
-    <h2 class="title">De « j'ai rien » à « mon SaaS est en ligne »</h2>
-    <div class="steps">
-      <div class="step"><div class="n">1</div><p><b>Choisis</b> un modèle dans le catalogue.</p></div>
-      <div class="step"><div class="n">2</div><p><b>Personnalise</b> : nom, logo, couleurs, ton prix.</p></div>
-      <div class="step"><div class="n">3</div><p><b>Connecte</b> ton compte de paiement, guidé pas à pas.</p></div>
-      <div class="step"><div class="n">4</div><p><b>Publie</b> : ton app est en ligne à ton adresse.</p></div>
-      <div class="step"><div class="n">5</div><p><b>Partage</b> le lien. Première vente = notif sur ton tel.</p></div>
-    </div>
-    <div class="magic">Le moment qu'on te vend : la notification <b>« tu viens d'encaisser »</b>.</div>
-  </div>
-</section>
-
-<section id="catalogue">
-  <div class="wrap">
-    <div class="eyebrow">Le catalogue de lancement</div>
-    <h2 class="title">Trois SaaS prêts à porter ta marque</h2>
-    <p class="lead">Chacun coche les trois règles : ton client revient chaque semaine (donc il s'abonne), la différence avec ChatGPT saute aux yeux, et tu es fier de le montrer.</p>
-    <div class="models">
-      <div class="model">
-        <h3>Assistant en lien bio</h3>
-        <p>Un chatbot à ta marque qui répond à tes prospects 24h/24 et remplit ton agenda tout seul.</p>
-        <div class="demo">« Il a bossé pendant que je dormais. »</div>
-      </div>
-      <div class="model">
-        <h3>Usine à contenu</h3>
-        <p>Tu dictes une idée, tu reçois des posts et carrousels designés à ta marque, prêts à publier.</p>
-        <div class="demo">Du visuel fini qui tombe à l'écran.</div>
-      </div>
-      <div class="model">
-        <h3>Assistant de vente à mémoire</h3>
-        <p>Il suit toutes tes conversations clients et te rappelle de relancer au bon moment.</p>
-        <div class="demo">« Il m'a rappelé de relancer, j'ai signé. »</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="prix" style="background:var(--bg2)">
-  <div class="wrap">
-    <div class="eyebrow">Le prix</div>
-    <h2 class="title">Tu ne paies vraiment que quand tu gagnes</h2>
-    <div class="prices">
-      <div class="price">
-        <h3>Gratuit</h3>
-        <div class="amt">0€ <small>/ mois</small></div>
-        <ul>
-          <li>Tout est débloqué</li>
-          <li>On prend 10% sur tes ventes</li>
-          <li>Ta marque, ton prix</li>
-          <li>Page de vente incluse</li>
-        </ul>
-        <a href="#founder" class="btn ghost">Commencer gratuitement</a>
-      </div>
-      <div class="price hot">
-        <span class="tag">Fondateur — gelé à vie</span>
-        <h3>Pro</h3>
-        <div class="amt">24€ <small>/ mois</small></div>
-        <ul>
-          <li>0% de commission sur tes ventes</li>
-          <li>Le plan se rembourse dès ta 1re vente</li>
-          <li>Tous les modèles du catalogue</li>
-          <li>Prix bloqué à vie pour les fondateurs</li>
-        </ul>
-        <a href="#founder" class="btn">Réserver le tarif fondateur</a>
-      </div>
-    </div>
-    <p class="proof">Paiements sécurisés via Stripe. Réservé aux 18 ans et plus. On ne promet jamais de revenus : on te donne l'outil et le mode d'emploi.</p>
-  </div>
-</section>
-
-<section>
-  <div class="wrap">
-    <div class="founder" id="founder">
-      <h2>Deviens membre fondateur</h2>
-      <p>Les 100 premiers gardent le tarif Pro <b>gelé à vie</b>. Laisse ton email : tu es prévenu dès l'ouverture, avant tout le monde.</p>
-      <form class="wl" onsubmit="return wlSubmit(event)">
-        <input type="email" id="wlmail" placeholder="ton@email.com" required />
-        <button type="submit" class="btn">Je réserve ma place</button>
-      </form>
-      <p class="wl-note" id="wlnote">Zéro spam. Juste le signal de départ.</p>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap">
-    MonSaaS — Ton SaaS, en ligne ce soir. · <a href="#founder" style="color:var(--accent2)">Rejoindre les fondateurs</a>
-  </div>
-</footer>
-
-<script>
-  // Capture email — à remplacer par ton vrai formulaire (Tally / Formspree / Brevo).
-  // Par défaut : ouvre le mail pré-rempli vers TON adresse pour ne rien perdre.
-  var TON_EMAIL = "bexxos123@gmail.com"; // <-- remplace par l'adresse qui doit recevoir les inscriptions
-  function wlSubmit(e){
-    e.preventDefault();
-    var mail = document.getElementById('wlmail').value.trim();
-    if(!mail) return false;
-    var note = document.getElementById('wlnote');
-    note.innerHTML = "✅ C'est noté&nbsp;! Tu es sur la liste des fondateurs.";
-    note.style.color = "#f5c76a";
-    // Fallback sans backend : enregistre l'inscription par email
-    window.location.href = "mailto:"+TON_EMAIL+"?subject=Inscription%20liste%20fondateurs%20MonSaaS&body=Nouvel%20inscrit%20%3A%20"+encodeURIComponent(mail);
-    return false;
-  }
-</script>
-</body>
+    <!-- Prechargement des deux graisses principales : corps (Inter 400) et titres (Space Grotesk). -->
+    <link
+      rel="preload"
+      href="/fonts/inter-latin-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/space-grotesk-latin-wght-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>

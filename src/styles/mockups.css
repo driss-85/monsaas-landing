@@ -1,0 +1,381 @@
+/* ============================================================
+   Mockups produit : 100% HTML/CSS/SVG. Aucune image bitmap.
+   Represente le vrai produit (dashboard, notif de vente, assistant,
+   personnalisation), memes termes que la demo filmable.
+   ============================================================ */
+
+/* --- Chassis de fenetre commun --- */
+.mk-window {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  width: 100%;
+}
+.mk-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--bg-elevated-2), var(--bg-elevated));
+}
+.mk-dots {
+  display: flex;
+  gap: 6px;
+}
+.mk-dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+}
+.mk-url {
+  flex: 1;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 5px 10px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* --- Dashboard revendeur --- */
+.mk-dash {
+  padding: 18px;
+}
+.mk-dash-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+}
+.mk-label {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+.mk-amount {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-top: 6px;
+}
+.mk-trend {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--violet);
+  background: var(--violet-soft);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 4px 8px;
+}
+.mk-chart {
+  margin: 16px 0 4px;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.mk-chart-foot {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.mk-sales {
+  margin-top: 16px;
+  border-top: 1px solid var(--border);
+  padding-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mk-sale {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.mk-sale-ic {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--violet-soft);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--violet);
+  flex-shrink: 0;
+}
+.mk-sale-txt {
+  flex: 1;
+  min-width: 0;
+}
+.mk-sale-txt b {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text);
+  display: block;
+}
+.mk-sale-time {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+.mk-sale-amt {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* --- Notification de vente --- */
+.mk-notif {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-float);
+  padding: 12px 16px;
+  max-width: 280px;
+}
+.mk-notif-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #34d399; /* point de statut, hors palette d'accent : indicateur systeme */
+  box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.16);
+  flex-shrink: 0;
+}
+.mk-notif-txt b {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--text);
+  display: block;
+}
+.mk-notif-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* --- Assistant en lien bio --- */
+.mk-chat {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.mk-chat-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.mk-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--gradient-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 12px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.mk-chat-name b {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 13px;
+  display: block;
+}
+.mk-chat-name span {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+.mk-bubble {
+  max-width: 82%;
+  padding: 10px 13px;
+  font-size: 13px;
+  line-height: 1.4;
+  border-radius: 13px;
+}
+.mk-bubble.them {
+  align-self: flex-start;
+  background: var(--bg-elevated-2);
+  border: 1px solid var(--border);
+  border-bottom-left-radius: 4px;
+  color: var(--text-secondary);
+}
+.mk-bubble.me {
+  align-self: flex-end;
+  background: var(--violet);
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+/* --- Personnalisation --- */
+.mk-custom {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mk-field label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+.mk-input {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 9px 12px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  color: var(--text);
+}
+.mk-swatches {
+  display: flex;
+  gap: 8px;
+}
+.mk-swatch {
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  cursor: default;
+}
+.mk-swatch.active {
+  outline: 2px solid var(--violet);
+  outline-offset: 2px;
+}
+.mk-preview {
+  border: 1px dashed var(--border-strong);
+  border-radius: 10px;
+  padding: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mk-preview-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  background: var(--gradient-accent);
+  flex-shrink: 0;
+}
+.mk-preview-txt b {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  display: block;
+}
+.mk-preview-txt span {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+/* --- Aperçus catalogue (mini interfaces par modele) --- */
+.mk-mini {
+  border-bottom: 1px solid var(--border);
+  padding: 14px;
+  min-height: 128px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: linear-gradient(180deg, var(--bg-elevated-2), var(--bg-elevated));
+}
+.mk-mini-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.mk-mini-bubble {
+  font-size: 11px;
+  line-height: 1.35;
+  padding: 7px 10px;
+  border-radius: 10px;
+  max-width: 85%;
+}
+.mk-mini-bubble.them {
+  align-self: flex-start;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+.mk-mini-bubble.me {
+  align-self: flex-end;
+  background: var(--violet);
+  color: #fff;
+}
+.mk-mini-card {
+  flex: 1;
+  height: 34px;
+  border-radius: 8px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.mk-mini-line {
+  height: 8px;
+  border-radius: 6px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+.mk-mini-line.w60 {
+  width: 60%;
+}
+.mk-mini-line.w40 {
+  width: 40%;
+}
+.mk-mini-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #34d399;
+  flex-shrink: 0;
+}
+.mk-mini-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  background: var(--gradient-accent);
+  flex-shrink: 0;
+}
