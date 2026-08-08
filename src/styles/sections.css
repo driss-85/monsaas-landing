@@ -64,6 +64,30 @@
   padding-top: 56px;
   padding-bottom: var(--section-gap);
 }
+/* Arc lumineux facon "horizon de planete" derriere le hero (touche maitrisee). */
+.hero-arc {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 780px;
+  height: 780px;
+  border-radius: 50%;
+  border-top: 1px solid rgba(139, 92, 246, 0.6);
+  box-shadow:
+    0 -2px 60px 2px rgba(139, 92, 246, 0.25),
+    inset 0 3px 50px rgba(77, 124, 254, 0.14);
+  pointer-events: none;
+  opacity: 0.65;
+}
+@media (min-width: 768px) {
+  .hero-arc {
+    top: 8px;
+    width: 1400px;
+    height: 1400px;
+  }
+}
+
 .hero-glow {
   position: absolute;
   top: -180px;

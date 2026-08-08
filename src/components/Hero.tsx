@@ -8,6 +8,7 @@ const { hero } = content;
 export function Hero() {
   return (
     <header className="hero" id="top">
+      <div className="hero-arc" aria-hidden="true" />
       <div className="hero-glow" aria-hidden="true" />
       <div className="container hero-inner">
         <div className="hero-content">
