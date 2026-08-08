@@ -24,6 +24,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      # Force la source Pages sur "GitHub Actions" (build_type workflow).
+      # Sans ca, si le repo est en "Deploy from a branch", GitHub sert les
+      # fichiers source bruts (index.html qui pointe vers /src/main.tsx) et
+      # la page reste blanche. enablement:true bascule la config via l'API.
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
       - uses: actions/setup-node@v4
         with:
           node-version: 20
