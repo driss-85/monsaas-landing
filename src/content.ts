@@ -411,7 +411,7 @@ export const legal: Record<'mentions' | 'cgu' | 'confidentialite', LegalPage> = 
       {
         heading: 'Hébergement des données',
         body: [
-          'Les inscriptions sont stockées via Supabase.',
+          `Les inscriptions sont transmises à un prestataire de collecte de formulaires : ${PLACEHOLDER}`,
           `Localisation et durée de conservation : ${PLACEHOLDER}`,
         ],
       },
