@@ -55,6 +55,14 @@ export interface FooterLink {
 }
 
 export const content = {
+  ui: {
+    carousel: {
+      prev: 'Précédent',
+      next: 'Suivant',
+      goTo: 'Aller à',
+    },
+  },
+
   site: {
     name: 'MonSaaS',
     baseline: 'Ton logiciel, prêt à vendre.',

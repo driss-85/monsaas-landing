@@ -78,7 +78,8 @@
     0 -2px 60px 2px rgba(139, 92, 246, 0.25),
     inset 0 3px 50px rgba(77, 124, 254, 0.14);
   pointer-events: none;
-  opacity: 0.65;
+  opacity: 0.35;
+  filter: blur(1.5px);
 }
 @media (min-width: 768px) {
   .hero-arc {
@@ -102,7 +103,25 @@
   background-repeat: no-repeat;
   filter: blur(20px);
   pointer-events: none;
-  opacity: 0.14;
+  opacity: 0.22;
+}
+/* Le mockup semble eclaire depuis l'arriere : halo dedie a la scene. */
+.hero-stage::before {
+  content: '';
+  position: absolute;
+  inset: -12% -18%;
+  background: radial-gradient(
+    ellipse 60% 55% at 55% 40%,
+    rgba(139, 92, 246, 0.2),
+    rgba(77, 124, 254, 0.08) 55%,
+    transparent 75%
+  );
+  filter: blur(28px);
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-stage > * {
+  position: relative;
 }
 .hero-inner {
   position: relative;
@@ -253,10 +272,10 @@
 @keyframes glow-breathe {
   0%,
   100% {
-    opacity: 0.1;
+    opacity: 0.16;
   }
   50% {
-    opacity: 0.18;
+    opacity: 0.28;
   }
 }
 
@@ -323,87 +342,210 @@
   }
 }
 
-/* =================== JOURNEY =================== */
-.journey {
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-}
-.journey-list {
-  list-style: none;
-  position: relative;
+/* =================== CARROUSELS (primitives) =================== */
+/* Swipe natif : scroll-snap, sans scrollbar visible, fluide sur iPhone. */
+.carousel-track {
   display: flex;
-  flex-direction: column;
-  gap: 32px;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 10px 20px 20px;
 }
-.journey-list::before {
+.carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.carousel-counter {
+  color: var(--text-secondary);
+  letter-spacing: 0.12em;
+  margin-right: 4px;
+}
+.car-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition:
+    color var(--transition),
+    border-color var(--transition),
+    opacity var(--transition);
+}
+.car-btn:hover:not(:disabled) {
+  color: var(--text);
+  border-color: var(--text-secondary);
+}
+.car-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 4px;
+}
+/* Point de 8px visible, cible tactile de 44px via bordure transparente. */
+.carousel-dot {
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 18px solid transparent;
+  border-radius: 100px;
+  background: var(--border-strong);
+  background-clip: padding-box;
+  cursor: pointer;
+  transition:
+    background-color var(--transition),
+    width var(--transition);
+}
+.carousel-dot.is-active {
+  background-color: var(--violet);
+  width: 58px;
+}
+
+/* =================== JOURNEY (carrousel horizontal) =================== */
+.journey {
+  position: relative;
+  overflow: clip;
+}
+/* Lumiere douce, legerement bleutee, derriere les etapes. */
+.journey::before {
   content: '';
   position: absolute;
-  left: 19px;
-  top: 16px;
-  bottom: 16px;
-  width: 2px;
-  background: var(--gradient-accent);
-  opacity: 0.35;
-  border-radius: 2px;
+  top: 18%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1300px, 160vw);
+  height: 70%;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 40%, rgba(139, 92, 246, 0.1), transparent 70%),
+    radial-gradient(ellipse 50% 45% at 75% 60%, rgba(77, 124, 254, 0.07), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
 }
-.step-row {
+.journey > * {
   position: relative;
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 16px 18px;
-  align-items: start;
+  z-index: 1;
+}
+.journey-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 8px;
+}
+.journey-section-head {
+  margin-bottom: 0;
+}
+.journey-viewport {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.journey-track {
+  list-style: none;
+}
+.step-card {
+  flex: 0 0 78%;
+  max-width: 340px;
+  scroll-snap-align: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease,
+    border-color var(--transition);
+}
+.step-card-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 .step-num {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
   background: var(--bg-elevated-2);
   border: 1px solid var(--border-strong);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--text);
+  color: var(--text-secondary);
   font-size: 12px;
-  position: relative;
-  z-index: 1;
+  flex-shrink: 0;
+  transition:
+    color var(--transition),
+    border-color var(--transition),
+    background var(--transition);
 }
 .step-title {
   font-family: var(--font-display);
   font-weight: 500;
-  font-size: 19px;
+  font-size: 18px;
   letter-spacing: -0.01em;
 }
 .step-line {
   color: var(--text-secondary);
-  font-size: 15px;
-  margin-top: 4px;
+  font-size: 14.5px;
+  min-height: 2.9em;
 }
-.step-visual {
-  grid-column: 2 / -1;
-  margin-top: 12px;
-  max-width: 320px;
+.step-card-visual {
+  margin-top: auto;
 }
-
-@media (min-width: 768px) {
-  .journey-list {
-    gap: 20px;
+/* Etape active mise en avant, voisines attenuees (mobile surtout). */
+.step-card.is-active {
+  border-color: var(--border-strong);
+}
+.step-card.is-active .step-num {
+  color: var(--violet);
+  border-color: var(--violet);
+  background: var(--violet-soft);
+}
+@media (max-width: 1119px) {
+  .step-card:not(.is-active) {
+    opacity: 0.55;
+    transform: scale(0.97);
   }
-  .step-row {
-    grid-template-columns: 40px minmax(0, 1fr) 340px;
-    align-items: center;
-    gap: 24px;
-    padding-block: 12px;
+}
+@media (min-width: 640px) {
+  .step-card {
+    flex-basis: 300px;
   }
-  .step-text {
-    align-self: center;
+  .carousel-track {
+    padding-inline: 24px;
   }
-  .step-visual {
-    grid-column: 3;
-    margin-top: 0;
-    justify-self: end;
-    width: 100%;
-    max-width: 340px;
+}
+/* Desktop large : les 5 etapes visibles cote a cote, 01 -> 05. */
+@media (min-width: 1120px) {
+  .journey-track {
+    padding-inline: 0;
+    overflow-x: visible;
+  }
+  .step-card {
+    flex: 1 1 0;
+    max-width: none;
+    min-width: 0;
+  }
+  .journey .carousel-nav,
+  .journey .carousel-dots {
+    display: none;
   }
 }
 
@@ -466,16 +608,64 @@
 
 /* =================== PRICING =================== */
 .pricing {
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: clip;
 }
-.pricing-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  max-width: 760px;
-  margin-inline: auto;
+/* Lumiere concentree autour de l'offre principale. */
+.pricing::before {
+  content: '';
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(900px, 150vw);
+  height: 60%;
+  background: radial-gradient(
+    ellipse 55% 60% at 50% 45%,
+    rgba(139, 92, 246, 0.14),
+    rgba(77, 124, 254, 0.05) 55%,
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.pricing > * {
+  position: relative;
+  z-index: 1;
+}
+.pricing-viewport {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.pricing-track {
+  align-items: stretch;
+}
+.pricing-track .price-card {
+  flex: 0 0 82%;
+  max-width: 380px;
+  scroll-snap-align: center;
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+@media (max-width: 767px) {
+  .pricing-track .price-card:not(.is-active) {
+    opacity: 0.55;
+    transform: scale(0.97);
+  }
+}
+@media (min-width: 768px) {
+  .pricing-track {
+    justify-content: center;
+    overflow-x: visible;
+    padding-inline: 20px;
+  }
+  .pricing-track .price-card {
+    flex: 0 1 370px;
+  }
+  .pricing-dots {
+    display: none;
+  }
 }
 .price-card {
   display: flex;
@@ -569,10 +759,6 @@
 }
 
 @media (min-width: 768px) {
-  .pricing-grid {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
   .price-featured {
     transform: scale(1.02);
   }
@@ -776,5 +962,100 @@
   }
   .footer-brand {
     grid-column: auto;
+  }
+}
+
+/* =================== ATMOSPHERE LUMINEUSE CONTINUE =================== */
+/* Un seul systeme : grands halos tres diffus, violet dominant, bleu en
+   nuance. L'intensite varie par section mais la lumiere ne disparait
+   jamais completement : le visiteur traverse un seul univers. */
+
+.features {
+  position: relative;
+  overflow: clip;
+}
+.features::before {
+  content: '';
+  position: absolute;
+  top: -10%;
+  left: -15%;
+  width: 70%;
+  height: 90%;
+  background: radial-gradient(
+    ellipse 55% 45% at 40% 45%,
+    rgba(139, 92, 246, 0.09),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.features > * {
+  position: relative;
+  z-index: 1;
+}
+
+.catalogue {
+  position: relative;
+  overflow: clip;
+}
+.catalogue::before {
+  content: '';
+  position: absolute;
+  top: 5%;
+  right: -20%;
+  width: 75%;
+  height: 95%;
+  background:
+    radial-gradient(ellipse 55% 45% at 60% 40%, rgba(139, 92, 246, 0.1), transparent 70%),
+    radial-gradient(ellipse 40% 35% at 30% 75%, rgba(77, 124, 254, 0.05), transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.catalogue > * {
+  position: relative;
+  z-index: 1;
+}
+
+.footer {
+  position: relative;
+  overflow: clip;
+}
+/* Ambiance beaucoup plus calme, mais toujours le meme univers. */
+.footer::before {
+  content: '';
+  position: absolute;
+  top: -40%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(800px, 140vw);
+  height: 80%;
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 100%,
+    rgba(139, 92, 246, 0.05),
+    transparent 75%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+.footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Respiration tres lente et presque imperceptible des grandes lumieres. */
+@media (prefers-reduced-motion: no-preference) {
+  .journey::before,
+  .pricing::before,
+  .catalogue::before {
+    animation: ambient-breathe 16s ease-in-out infinite;
+  }
+}
+@keyframes ambient-breathe {
+  0%,
+  100% {
+    opacity: 0.75;
+  }
+  50% {
+    opacity: 1;
   }
 }

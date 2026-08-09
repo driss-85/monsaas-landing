@@ -1,26 +1,32 @@
 import { Check } from 'lucide-react';
 import { content } from '../content';
 import { useReveal } from '../lib/useReveal';
+import { useCarousel } from '../lib/useCarousel';
 
-const { pricing } = content;
+const { pricing, ui } = content;
 
-// Plan recommande en premier (utile sur mobile ou les plans s'empilent).
-const plans = [...pricing.plans].sort((a, b) => Number(b.featured) - Number(a.featured));
+// Plan recommande en premier : c'est lui que le visiteur voit d'abord,
+// sur mobile (premiere slide du carrousel) comme sur desktop.
+const plans = [...pricing.plans].sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0));
 
 export function Pricing() {
-  const ref = useReveal<HTMLElement>();
+  const revealRef = useReveal<HTMLElement>();
+  const { trackRef, active, scrollTo } = useCarousel(plans.length);
+
   return (
-    <section id="prix" className="pricing" ref={ref}>
+    <section id="prix" className="pricing" ref={revealRef}>
       <div className="container">
         <div className="section-head">
           <p className="eyebrow">{pricing.eyebrow}</p>
           <h2 className="section-title">{pricing.title}</h2>
         </div>
+      </div>
 
-        <div className="pricing-grid">
-          {plans.map((plan) => (
+      <div className="pricing-viewport reveal">
+        <div className="carousel-track pricing-track" ref={trackRef}>
+          {plans.map((plan, i) => (
             <article
-              className={`card price-card reveal ${plan.featured ? 'price-featured' : ''}`}
+              className={`card price-card ${plan.featured ? 'price-featured' : ''} ${i === active ? 'is-active' : ''}`}
               key={plan.name}
             >
               {plan.badge && <span className="price-badge">{plan.badge}</span>}
@@ -46,6 +52,21 @@ export function Pricing() {
           ))}
         </div>
 
+        <div className="carousel-dots pricing-dots" role="tablist">
+          {plans.map((plan, i) => (
+            <button
+              key={plan.name}
+              type="button"
+              className={`carousel-dot ${i === active ? 'is-active' : ''}`}
+              onClick={() => scrollTo(i)}
+              aria-label={`${ui.carousel.goTo} ${plan.name}`}
+              aria-current={i === active}
+            />
+          ))}
+        </div>
+      </div>
+
+      <div className="container">
         <p className="pricing-note">{pricing.note}</p>
       </div>
     </section>
